@@ -13,14 +13,14 @@ const Doctors = () => {
     const [isEditMode, setIsEditMode] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/doctors')
+        axios.get('https://hm-deploy.onrender.com/doctors')
             .then(response => setDoctors(response.data))
             .catch(error => console.error('Error fetching doctors:', error));
     }, []);
 
     const handleAddDoctor = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/doctors/add', newDoctor)
+        axios.post('https://hm-deploy.onrender.com/doctors/add', newDoctor)
             .then(response => {
                 setDoctors([...doctors, response.data]);
                 setNewDoctor({ name: '', specialty: '' });
@@ -30,7 +30,7 @@ const Doctors = () => {
 
     const handleUpdateDoctor = (id, e) => {
         e.preventDefault();
-        axios.post(`http://localhost:5000/doctors/update/${id}`, selectedDoctor)
+        axios.post(`https://hm-deploy.onrender.com/doctors/update/${id}`, selectedDoctor)
             .then(response => {
                 const updatedDoctor = { ...selectedDoctor, _id: id };
                 setDoctors(doctors.map(doctor =>
@@ -43,7 +43,7 @@ const Doctors = () => {
     };
 
     const handleDeleteDoctor = (id) => {
-        axios.delete(`http://localhost:5000/doctors/delete/${id}`)
+        axios.delete(`https://hm-deploy.onrender.com/doctors/delete/${id}`)
             .then(response => {
                 setDoctors(doctors.filter(doctor => doctor._id !== id));
             })

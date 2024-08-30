@@ -10,14 +10,14 @@ const Patients = () => {
     const [isEditMode, setIsEditMode] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/patients')
+        axios.get('https://hm-deploy.onrender.com/patients')
             .then(response => setPatients(response.data))
             .catch(error => console.error('Error fetching patients:', error));
     }, []);
 
     const handleAddPatient = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/patients/add', newPatient)
+        axios.post('https://hm-deploy.onrender.com/patients/add', newPatient)
             .then(response => {
                 console.log(response.data);
                 setPatients([...patients, response.data]);
@@ -28,7 +28,7 @@ const Patients = () => {
 
     const handleUpdatePatient = (id, e) => {
         e.preventDefault();
-        axios.post(`http://localhost:5000/patients/update/${id}`, selectedPatient)
+        axios.post(`https://hm-deploy.onrender.com/patients/update/${id}`, selectedPatient)
             .then(response => {
                 const updatedPatient = { ...selectedPatient, _id: id };
                 console.log('Updated patient:', updatedPatient);
@@ -40,7 +40,7 @@ const Patients = () => {
     };
 
     const handleDeletePatient = (id) => {
-        axios.delete(`http://localhost:5000/patients/delete/${id}`)
+        axios.delete(`https://hm-deploy.onrender.com/patients/delete/${id}`)
             .then(response => {
                 console.log(response.data);
                 setPatients(patients.filter(patient => patient._id !== id));
