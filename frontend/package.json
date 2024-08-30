@@ -14,6 +14,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start": "react-scripts start",
+  "build": "react-scripts build",
     "install-client": "npm install",
     "build-client": "npm run build",
     "start-client": "npm run start"
