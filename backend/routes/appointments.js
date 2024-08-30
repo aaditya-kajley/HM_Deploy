@@ -4,8 +4,9 @@ const Appointment = require('../models/Appointment');
 
 router.route('/').get((req, res) => {
     Appointment.find()
-        .then(appointments =>
-            res.json(appointments))
+        .then(appointments =>{
+            console.log(appointments);
+            res.json(appointments)})
         .catch(err =>
             res.status(400).json('Error: ' + err));
 });
